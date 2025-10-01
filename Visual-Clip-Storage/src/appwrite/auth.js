@@ -20,13 +20,44 @@ export class AuthService {
         password,
         name
       );
+
       if (userAccount) {
         // Call a another method
-        return userAccount;
+        return this.login({ email, password });
       } else {
-        return null;
+        return userAccount;
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Appwrite createAccount Error:", error);
+      throw error;
+    }
+  }
+
+  async login({ email, password }) {
+    try {
+      return await this.account.createEmailSession(email, password);
+    } catch (error) {
+      console.error("Appwrite login Error:", error);
+      throw error;
+    }
+  }
+
+  async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      console.error("Appwrite getCurrentUser Error:", error);
+      throw error;
+    }
+  }
+
+  async logout() {
+    try {
+      await this.account.deleteSessions();
+    } catch (error) {
+      console.error("Appwrite Logout Error:", error);
+      throw error;
+    }
   }
 }
 
