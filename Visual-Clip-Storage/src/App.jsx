@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -24,16 +27,11 @@ function App() {
   }, []);
   
   return !loading ? (
-    <div className="min-h-screen bg-gray-100 p-4 flex items-center justify-center">
-      <p className="text-xl font-bold text-gray-800">text</p>
-      <div>
+    <div>
         <Header/>
-        <main>
-
-        </main>
+        <Outlet/>
         <Footer/>
       </div>
-    </div>
   ) : null;
 }
 
