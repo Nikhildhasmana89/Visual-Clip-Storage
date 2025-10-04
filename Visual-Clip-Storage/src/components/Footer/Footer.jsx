@@ -1,8 +1,10 @@
 import React from "react";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { Mail, Briefcase, Rss } from "lucide-react";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-gray-900 text-gray-400 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +12,7 @@ function Footer() {
           <div className="col-span-2 lg:col-span-2 flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
               <img
-                src=""
+                src={logo}
                 alt="Visual Clip Storage Logo"
                 className="w-12 h-12 rounded-xl shadow-lg border border-indigo-600 p-0.5 object-cover"
               />
