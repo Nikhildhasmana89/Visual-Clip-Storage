@@ -6,6 +6,11 @@ import RTE from "./Common/RTE";
 import Signup from "./auth/Signup"
 import Login from "./auth/Login";
 import PostForm from "./post/PostForm";
+import AuthLayout from '../components/auth/AuthLayout'
+import AllPosts from "./post/AllPosts";
+import EditPost from "./post/EditPost";
+import Post from "./post/Post";
+import Home from "../pages/Home"
 
 export {
     Header,
@@ -16,4 +21,9 @@ export {
     Signup,
     Login,
     PostForm,
+    AuthLayout,
+    AllPosts,
+    EditPost,
+    Post,
+    Home,
 }
