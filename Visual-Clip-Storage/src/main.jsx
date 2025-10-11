@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
-import { BrowserRouter, createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "lucide-react";
 import {
   AllPosts,
@@ -13,6 +13,7 @@ import {
   Login,
   Post,
   Signup,
+  AddPost,
 } from "./components/index.js";
 
 const router = createBrowserRouter([
@@ -83,9 +84,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-      <RouterProvider router = {router}/>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

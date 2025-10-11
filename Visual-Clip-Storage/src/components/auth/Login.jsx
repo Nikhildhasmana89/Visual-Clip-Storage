@@ -4,7 +4,7 @@ import { login as authLogin } from "../../store/authSlice";
 import authService from "../../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import Input from "./Input";
+import Input from "../Common/Input";
 
 function Login() {
   const navigate = useNavigate();

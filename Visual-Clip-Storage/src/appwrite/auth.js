@@ -37,19 +37,21 @@ export class AuthService {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      console.logo("Appwrite login Error:", error);
+      console.log("Appwrite login Error:", error);
+
       throw error;
     }
   }
 
   async getCurrentUser() {
-    try {
-      const user = await account.get();
-      console.log(user);
-    } catch (error) {
-      console.log("User not logged in", error);
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.log("Appwrite serive :: getCurrentUser :: error", error);
+        }
+
+        return null;
     }
-  }
 
   async logout() {
     try {

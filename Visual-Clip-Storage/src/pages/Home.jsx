@@ -14,18 +14,19 @@ export default function Home() {
   }, []);
 
   if (posts.length === 0) {
-    return (
-      <div className="">
-        <Container>
-          <div className="">
-            <div className="">
-              <h1>Login to read posts</h1>
-            </div>
-          </div>
-        </Container>
+  return (
+    <div className="flex w-full items-center justify-center py-20">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-200">
+          Login to read posts
+        </h1>
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
+          Your feed is waiting for you.
+        </p>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <div className="py-10 bg-gray-50 min-h-screen">
@@ -36,7 +37,7 @@ export default function Home() {
               className="transition transform hover:scale-[1.02] hover:shadow-lg duration-300"
               key={post.$id}
             >
-              <PostCard post={post} />
+              <PostCard {...post} />
             </div>
           ))}
         </div>

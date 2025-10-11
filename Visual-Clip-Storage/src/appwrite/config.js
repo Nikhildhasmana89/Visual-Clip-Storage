@@ -1,13 +1,5 @@
 import conf from "../conf/conf";
-import {
-  Client,
-  ID,
-  Databases,
-  Storage,
-  Query,
-  Account,
-  Query,
-} from "appwrite";
+import { Client, ID, Databases, Storage, Account, Query } from "appwrite";
 export class Service {
   client = new Client();
   databases;
@@ -75,8 +67,8 @@ export class Service {
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
-        conf.appwriteCollectionID,
         conf.appwriteDatabaseID,
+        conf.appwriteCollectionID,
         slug
       );
     } catch (error) {
@@ -127,5 +119,6 @@ export class Service {
   }
 }
 
-const appwriteService = new AppwriteService();
+const appwriteService = new Service();
 export default appwriteService;
+

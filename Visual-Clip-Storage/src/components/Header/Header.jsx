@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { Container, LogoutBtn } from "../../container/index.js";
-import { useNavigate } from "react-router-dom";
+import { Container, LogoutBtn } from "../index";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Header() {

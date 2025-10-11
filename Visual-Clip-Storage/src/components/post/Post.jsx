@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../../appwrite/config";
-import Container from '../../container/Container'
+import Container from "../../container/Container";
+import { parse } from "postcss";
 
 export default function Post() {
   const [post, sretPost] = useState(null);
