@@ -12,19 +12,32 @@ function App() {
   
   
   useEffect(() => {
-    authService
-    .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login(userData));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .finally(() => {
-        setLoading(false);
+  const checkUser = async () => {
+    try {
+      //  Login manually
+       await authService.login({
+        email: "testuser@example.com", 
+        password: "mypassword123", 
       });
-  }, []);
+
+      // 2️⃣ Get current user after login
+      const userData = await authService.getCurrentUser();
+      if (userData) {
+        dispatch(login(userData));
+      } else {
+        dispatch(logout());
+      }
+    } catch (err) {
+      console.log("Auth error:", err);
+      dispatch(logout());
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  checkUser();
+}, []);
+
   
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>

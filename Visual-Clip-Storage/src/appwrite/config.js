@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, ID, Databases, Storage, Account, Query } from "appwrite";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
 export class Service {
   client = new Client();
   databases;
@@ -76,12 +76,12 @@ export class Service {
     }
   }
 
-  async getPosts(Query = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteCollectionID,
         conf.appwriteDatabaseID,
-        Query
+        queries
       );
     } catch (error) {
       console.log("Appwrite getPosts Error: ", error);
@@ -119,6 +119,5 @@ export class Service {
   }
 }
 
-const appwriteService = new Service();
-export default appwriteService;
-
+const serive = new Service();
+export default serive;

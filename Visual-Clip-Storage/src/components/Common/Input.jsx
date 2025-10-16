@@ -6,8 +6,7 @@ const Input = React.forwardRef(function Input(
 ) {
   const id = useId();
   return (
-     <div className="relative w-full">
-     
+    <div className="relative w-full">
       {label && (
         <label
           htmlFor={id}
@@ -20,16 +19,18 @@ const Input = React.forwardRef(function Input(
           {label}
         </label>
       )}
-       <input
+      <input
         type={type}
         id={id}
         ref={ref}
-        placeholder=" " 
+        placeholder=" "
         className={`
-          block w-full px-4 pt-5 pb-2 text-gray-900 bg-white border border-gray-300 rounded-md
-          appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
-          peer ${className} ${error ? "border-red-500 focus:ring-red-500 focus:border-red-500" : ""}
-        `}
+  block w-full px-4 pt-5 pb-2 text-gray-900 bg-white border border-gray-300 rounded-md
+  appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+  peer ${className} ${
+          error ? "border-red-500 focus:ring-red-500 focus:border-red-500" : ""
+        }
+`}
         {...props}
       />
     </div>
@@ -37,4 +38,3 @@ const Input = React.forwardRef(function Input(
 });
 
 export default Input;
-
