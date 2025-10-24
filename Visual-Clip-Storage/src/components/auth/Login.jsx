@@ -10,7 +10,11 @@ import Button from "../Common/Button";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [error, setError] = useState("");
 
   const login = async (data) => {
@@ -27,46 +31,63 @@ function Login() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950">
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-100">
-          Sign in to your account
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Don&apos;t have an account?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            Sign Up
-          </Link>
-        </p>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4 py-12">
+      <div className="mx-auto w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-200 p-8 space-y-6">
+        <div className="mb-8 text-center">
+          <h2 className="mt-4 text-3xl font-bold text-gray-900">
+            Sign in to your account
+          </h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Don't have an account?&nbsp;
+            <Link
+              to="/signup"
+              className="font-medium text-blue-600 hover:underline transition-colors duration-200"
+            >
+              Sign Up
+            </Link>
+          </p>
+        </div>
+
         {error && (
-          <p className="mt-4 text-red-500 text-center text-sm">{error}</p>
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-center"
+            role="alert"
+          >
+            <p>{error}</p>
+          </div>
         )}
-        <form onSubmit={handleSubmit(login)} className="mt-6 space-y-4">
-          <Input
-            label="Email"
-            placeholder="Enter your email"
-            type="email"
-            error = {errors.email?.message}
-            {...register("email", {
-              required: true,
-              validate: {
-                matchPattern: (value) => {
-                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                  return emailRegex.test(value) || "Invalid email address";
+
+        <form onSubmit={handleSubmit(login)} className="space-y-5">
+          <div>
+            <Input
+              label="Email:"
+              placeholder="Enter your email"
+              type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Please enter a valid email address",
                 },
-              },
-            })}
-          />
-          <Input
-            label="Password"
-            type="password"
-            error = {errors.email?.message}
-            placeholder="Enter your password"
-            {...register("password", {
-              required: true,
-            })}
-          />
-          <Button type="submit" className="w-full">
+              })}
+            />
+          </div>
+
+          <div>
+            <Input
+              label="Password:"
+              type="password"
+              placeholder="Enter your password"
+              {...register("password", {
+                required: "Password is required",
+              })}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform duration-200 transform hover:scale-105"
+          >
             Sign In
           </Button>
         </form>

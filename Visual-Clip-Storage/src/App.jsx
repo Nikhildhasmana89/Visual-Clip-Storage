@@ -9,47 +9,43 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  
-  
+
   useEffect(() => {
-  const checkUser = async () => {
-    try {
-      //  Login manually
-       await authService.login({
-        email: "testuser@example.com", 
-        password: "mypassword123", 
-      });
+    const checkUser = async () => {
+      try {
+        await authService.login({
+          email: "testuser@example.com",
+          password: "mypassword123",
+        });
 
-      // 2️⃣ Get current user after login
-      const userData = await authService.getCurrentUser();
-      if (userData) {
-        dispatch(login(userData));
-      } else {
+        const userData = await authService.getCurrentUser();
+        if (userData) {
+          dispatch(login(userData));
+        } else {
+          dispatch(logout());
+        }
+      } catch (err) {
+        console.log("Auth error:", err);
         dispatch(logout());
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.log("Auth error:", err);
-      dispatch(logout());
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  checkUser();
-}, []);
+    checkUser();
+  }, []);
 
-  
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
-        <Header />
-        <main>
-        TODO:  <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div className="flex flex-col min-h-screen  text-white">
+      <Header />
+
+      <main className="flex-grow bg-gray-950">
+        <Outlet />
+      </main>
+
+      <Footer />
     </div>
-  ) : null
+  ) : null;
 }
 
 export default App;

@@ -1,23 +1,22 @@
 import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Controller } from 'react-hook-form';
+import { Controller } from "react-hook-form";
 
-
-function RTE({ name, control, label, defaultvalue = "" }) {
+function RTE({ name, control, label, defaultValue = "" }) {
   return (
     <div>
-        {label && <label  className="font-medium text-gray-700">{label}</label>}
-        <Controller
-        name = {name || "content"}
-        control = {control}
-        render = {({field: {onChange}}) => (
-            <Editor
-            initialValue={defaultvalue}
+      {label && <label className="font-medium text-gray-700">{label}</label>}
+      <Controller
+        name={name || "content"}
+        control={control}
+        render={({ field: { onChange } }) => (
+          <Editor
+            apiKey="pzd9h8wcf7vtli1znfqinr7p6qymptfwhl0d0mpxwnneqj2x"
+            initialValue={defaultValue}
             init={{
-                initialValue: defaultvalue,
-                height: 500,
-                menubar: true,
-                plugins: [
+              height: 500,
+              menubar: true,
+              plugins: [
                 "advlist",
                 "autolink",
                 "lists",
@@ -37,7 +36,7 @@ function RTE({ name, control, label, defaultvalue = "" }) {
                 "help",
                 "wordcount",
               ],
-                toolbar:
+              toolbar:
                 "undo redo | blocks | " +
                 "bold italic forecolor | alignleft aligncenter " +
                 "alignright alignjustify | bullist numlist outdent indent | " +
@@ -45,10 +44,10 @@ function RTE({ name, control, label, defaultvalue = "" }) {
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
-            onEditorChange = {onChange}
-            />
+            onEditorChange={onChange}
+          />
         )}
-        />
+      />
     </div>
   );
 }
